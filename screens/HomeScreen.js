@@ -14,19 +14,27 @@ export default function HomeScreen({navigation}) {
     })
   }, [])
 
-  function goToNike() {
-    navigation.navigate('Nike');
+  function goToNike(reso) {
+    navigation.navigate('Nike',{
+      nameSocial: reso,
+      actionBadass: "roxer"
+    });
   }
+  // {truc: 'twitter'} quand je cliquerai sur twitter
+  // {truc: 'facebook'} quand je cliquerai sur facebook
 
   return (
     <View style={styles.container}>
 
-      <SocialIcon type='twitter' onPress={goToNike}/>
+      <SocialIcon type='twitter' onPress={()=> goToNike('twitter')}/>
+      <SocialIcon type='facebook' onPress={() => goToNike('facebook')}/>
+
       <FlatList
         data={posts}
 
         renderItem={({item})=> (
-          <ListItem bottomDivider>
+          <ListItem bottomDivider 
+            onPress={() => navigation.navigate('PostDetails')}>
           <ListItem.Content>
             <ListItem.Title>{item.title}</ListItem.Title>
             <Switch value={false} />
