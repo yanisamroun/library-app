@@ -13,13 +13,34 @@ export default function App() {
     })
   }, [])
 
-  const postsJSX = posts.map(post => {
-    return <Text>{post.title}</Text>
-  })
+  // const postsJSX = posts.map(post => {
+  //   return <Text>{post.title}</Text>
+  // })
 
   return (
     <View style={styles.container}>
-      {postsJSX}
+      {/* {postJSX} */}
+      {/* 
+          - data -> Un tableau d'éléments qu'on veut rendre 
+          (très souvent c'est un état)
+          - renderItem -> fonction de rendu 
+          (qu'est-ce que vous voulez pour chaque élément)
+          item c'est un nom qu'on ne peut pas changer,
+          item est imposé
+
+          - keyExtractor , c'est la même que le key=
+          qu'on mettait pour enlever le warning de la console
+
+          <ScrollView>
+           {postsJSX}
+          </ScrollView> mais encore plus optimisé, car
+          ça charge dynamiquement
+      */}
+      <FlatList
+        data={posts}
+        renderItem={({item})=> <Text>{item.title}</Text>}
+        keyExtractor={item => item.id.toString()}
+      />
     </View>
   );
 }
