@@ -1,10 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-export default function PostDetailsScreen() {
+export default function PostDetailsScreen({route}) {
+    const post = route.params.post;
     return (
         <View>
-            <Text>Je suis un écran de détail pour un article</Text>
+            <Text>{post.title}</Text>
+            <Text>{post.body}</Text>
         </View>
     )
 }
