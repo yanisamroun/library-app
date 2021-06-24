@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
 import { ListItem, SocialIcon, Switch } from 'react-native-elements';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -14,24 +14,29 @@ export default function HomeScreen() {
     })
   }, [])
 
+  function goToNike() {
+    navigation.navigate('Nike');
+  }
+
   return (
     <View style={styles.container}>
-    <SocialIcon type='twitter' />
-    <FlatList
-      data={posts}
 
-      renderItem={({item})=> (
-        <ListItem bottomDivider>
-        <ListItem.Content>
-          <ListItem.Title>{item.title}</ListItem.Title>
-          <Switch value={false} />
-        </ListItem.Content>
-        <ListItem.Chevron />
-        </ListItem>)
-      }
+      <SocialIcon type='twitter' onPress={goToNike}/>
+      <FlatList
+        data={posts}
 
-      keyExtractor={item => item.id.toString()}
-    />
+        renderItem={({item})=> (
+          <ListItem bottomDivider>
+          <ListItem.Content>
+            <ListItem.Title>{item.title}</ListItem.Title>
+            <Switch value={false} />
+          </ListItem.Content>
+          <ListItem.Chevron />
+          </ListItem>)
+        }
+
+        keyExtractor={item => item.id.toString()}
+      />
     
   </View>
   )
