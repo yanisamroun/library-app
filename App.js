@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
+import { ListItem, SocialIcon, Switch } from 'react-native-elements';
 
 export default function App() {
   const [posts, setPosts] = useState([]);
@@ -17,8 +18,28 @@ export default function App() {
   //   return <Text>{post.title}</Text>
   // })
 
+
+  // function truc() {
+  //   return (<View>
+  //     <Text>fokfoofk</Text>
+  //   </View>);
+  // }
+
+  // const truc = ()  => {
+  // return (
+  // <View>
+  //   <Text>fokfoofk</Text>
+  // </View>)
+  // };
+
+  // const truc = ()  => (
+  //   <View>
+  //     <Text>fokfoofk</Text>
+  //   </View>)
+
   return (
     <View style={styles.container}>
+      <SocialIcon type='twitter' />
       {/* {postJSX} */}
       {/* 
           - data -> Un tableau d'éléments qu'on veut rendre 
@@ -38,9 +59,20 @@ export default function App() {
       */}
       <FlatList
         data={posts}
-        renderItem={({item})=> <Text>{item.title}</Text>}
+
+        renderItem={({item})=> (
+          <ListItem bottomDivider>
+          <ListItem.Content>
+            <ListItem.Title>{item.title}</ListItem.Title>
+            <Switch value={false} />
+          </ListItem.Content>
+          <ListItem.Chevron />
+          </ListItem>)
+        }
+
         keyExtractor={item => item.id.toString()}
       />
+      
     </View>
   );
 }
@@ -48,8 +80,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#fff'
   },
 });
