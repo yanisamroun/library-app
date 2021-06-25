@@ -1,0 +1,13 @@
+{
+    "Post": {
+      "bookId": "1",
+      "id": "1",
+      "title": "Harry et la chasse aux meufs",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquet nec purus in pretium.."
+      
+    },
+    "Comment": {
+      "body": "string",
+      "post": "Post"
+    }
+  }
