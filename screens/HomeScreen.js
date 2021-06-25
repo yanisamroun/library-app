@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TextInput, View, Button} from 'react-native';
 import axios from 'axios';
 import { Avatar, ListItem, SocialIcon, Switch } from 'react-native-elements';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function HomeScreen({navigation}) {
   const [posts, setPosts] = useState([]);
+  const [bookInput, setBookInput] = useState("");
 
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -14,21 +16,21 @@ export default function HomeScreen({navigation}) {
     })
   }, [])
 
-  function goToNike(reso) {
-    navigation.navigate('Nike',{
-      nameSocial: reso,
-      actionBadass: "roxer"
-    });
-  }
+
+
+ 
   // {truc: 'twitter'} quand je cliquerai sur twitter
   // {truc: 'facebook'} quand je cliquerai sur facebook
 
   return (
     <View style={styles.container}>
-
-      <SocialIcon type='twitter' onPress={()=> goToNike('twitter')}/>
-      <SocialIcon type='facebook' onPress={() => goToNike('facebook')}/>
-
+      
+      <View style={styles.formulairrr}>
+        <TextInput style={styles.input} value={bookInput}
+         onChangeText={(text) => {setBookInput(text)}} />
+        <Button title="OK" color="black" style={styles.validator}/> 
+        
+      </View>
 
       <FlatList
         data={posts}
@@ -58,4 +60,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
+  input: {
+    width: 200,
+    borderWidth: 2,
+    borderColor: 'black',
+    margin: 5,
+    
+  },
+  formulairrr: {
+    flexDirection: 'row',
+   
+  },
+ 
 });
